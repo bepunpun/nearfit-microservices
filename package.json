@@ -1,0 +1,6 @@
+{
+  "name": "nearfit-microservices",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Find the nearest gym to you: the same app as nearfit-monolithic, split into a gateway, a gym service and a review service"
+}

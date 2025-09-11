@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.angular/
+*.log
+.env
+.DS_Store
+# reviews submitted at runtime (created from reviews.seed.json on first use)
+services/review-service/src/data/reviews.json
+services/review-service/src/data/*.tmp
+# server details for deploy scripts
+deploy/config.env

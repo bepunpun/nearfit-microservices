@@ -1,0 +1,16 @@
+{
+  "name": "nearfit-gym-service",
+  "version": "1.0.0",
+  "description": "NearFit gym service: nearby search and gym details from OpenStreetMap (Overpass), with a sample-data fallback",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}

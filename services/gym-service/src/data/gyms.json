@@ -1,0 +1,175 @@
+[
+  {
+    "id": "golds-gym",
+    "name": "Gold's Gym",
+    "color": "#f94144",
+    "lat": 37.7755,
+    "lng": -122.4189,
+    "address": "221 Powell St, San Francisco",
+    "hours": {
+      "is24h": false,
+      "open": "06:00",
+      "close": "23:00",
+      "unknown": false
+    },
+    "priceLevel": 2,
+    "amenities": [
+      "Free weights",
+      "Sauna",
+      "Classes"
+    ],
+    "description": "One of the largest gym chains in the world, known for its serious free-weight floor.",
+    "source": "fallback"
+  },
+  {
+    "id": "planet-fitness",
+    "name": "Planet Fitness",
+    "color": "#a663cc",
+    "lat": 37.773,
+    "lng": -122.421,
+    "address": "88 5th St, San Francisco",
+    "hours": {
+      "is24h": true,
+      "open": null,
+      "close": null,
+      "unknown": false
+    },
+    "priceLevel": 1,
+    "amenities": [
+      "24/7 access",
+      "Tanning",
+      "HydroMassage"
+    ],
+    "description": "Budget-friendly, judgement-free chain open around the clock.",
+    "source": "fallback"
+  },
+  {
+    "id": "equinox",
+    "name": "Equinox",
+    "color": "#232323",
+    "lat": 37.777,
+    "lng": -122.415,
+    "address": "301 Pine St, San Francisco",
+    "hours": {
+      "is24h": false,
+      "open": "05:00",
+      "close": "22:00",
+      "unknown": false
+    },
+    "priceLevel": 4,
+    "amenities": [
+      "Personal training",
+      "Spa",
+      "Pool"
+    ],
+    "description": "Premium boutique-style gym with high-end amenities and personal training.",
+    "source": "fallback"
+  },
+  {
+    "id": "anytime-fitness",
+    "name": "Anytime Fitness",
+    "color": "#6a4c93",
+    "lat": 37.77,
+    "lng": -122.423,
+    "address": "45 Mission St, San Francisco",
+    "hours": {
+      "is24h": true,
+      "open": null,
+      "close": null,
+      "unknown": false
+    },
+    "priceLevel": 2,
+    "amenities": [
+      "24/7 access",
+      "Keyless entry"
+    ],
+    "description": "Neighborhood gym chain built around round-the-clock member access.",
+    "source": "fallback"
+  },
+  {
+    "id": "crunch-fitness",
+    "name": "Crunch Fitness",
+    "color": "#f9c74f",
+    "lat": 37.779,
+    "lng": -122.417,
+    "address": "150 Market St, San Francisco",
+    "hours": {
+      "is24h": false,
+      "open": "06:00",
+      "close": "23:59",
+      "unknown": false
+    },
+    "priceLevel": 2,
+    "amenities": [
+      "Group classes",
+      "HIIT zone"
+    ],
+    "description": "No-judgement gym chain with a big class schedule and playful branding.",
+    "source": "fallback"
+  },
+  {
+    "id": "la-fitness",
+    "name": "LA Fitness",
+    "color": "#277da1",
+    "lat": 37.7715,
+    "lng": -122.426,
+    "address": "500 Van Ness Ave, San Francisco",
+    "hours": {
+      "is24h": false,
+      "open": "05:00",
+      "close": "23:00",
+      "unknown": false
+    },
+    "priceLevel": 2,
+    "amenities": [
+      "Basketball court",
+      "Pool",
+      "Classes"
+    ],
+    "description": "Full-size club with a basketball court, pool, and group fitness studio.",
+    "source": "fallback"
+  },
+  {
+    "id": "orangetheory",
+    "name": "Orangetheory Fitness",
+    "color": "#f3722c",
+    "lat": 37.7745,
+    "lng": -122.412,
+    "address": "77 Howard St, San Francisco",
+    "hours": {
+      "is24h": false,
+      "open": "05:00",
+      "close": "21:00",
+      "unknown": false
+    },
+    "priceLevel": 3,
+    "amenities": [
+      "Heart-rate training",
+      "Coached classes"
+    ],
+    "description": "Coached, heart-rate-based interval workouts in 60-minute studio classes.",
+    "source": "fallback"
+  },
+  {
+    "id": "ymca",
+    "name": "YMCA",
+    "color": "#43aa8b",
+    "lat": 37.768,
+    "lng": -122.42,
+    "address": "220 Golden Gate Ave, San Francisco",
+    "hours": {
+      "is24h": false,
+      "open": "05:30",
+      "close": "22:00",
+      "unknown": false
+    },
+    "priceLevel": 1,
+    "amenities": [
+      "Pool",
+      "Family programs",
+      "Classes"
+    ],
+    "description": "Community-focused gym with a pool and programs for the whole family.",
+    "source": "fallback"
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "r1",
+    "gymId": "golds-gym",
+    "author": "Marcus",
+    "rating": 5,
+    "comment": "Huge free-weight floor, never feel crowded.",
+    "createdAt": "2025-07-02T10:00:00.000Z"
+  },
+  {
+    "id": "r2",
+    "gymId": "golds-gym",
+    "author": "Priya",
+    "rating": 4,
+    "comment": "Great equipment, could use more parking.",
+    "createdAt": "2025-07-10T18:30:00.000Z"
+  },
+  {
+    "id": "r3",
+    "gymId": "planet-fitness",
+    "author": "Diego",
+    "rating": 4,
+    "comment": "Cheap and open 24/7, exactly what I needed.",
+    "createdAt": "2025-06-28T07:15:00.000Z"
+  },
+  {
+    "id": "r4",
+    "gymId": "planet-fitness",
+    "author": "Fatima",
+    "rating": 3,
+    "comment": "Good value but gets packed after work.",
+    "createdAt": "2025-07-15T19:45:00.000Z"
+  },
+  {
+    "id": "r5",
+    "gymId": "equinox",
+    "author": "Sam",
+    "rating": 5,
+    "comment": "Pricey but the classes and spa make it worth it.",
+    "createdAt": "2025-07-01T09:00:00.000Z"
+  },
+  {
+    "id": "r6",
+    "gymId": "anytime-fitness",
+    "author": "Layla",
+    "rating": 4,
+    "comment": "Small but always available, love the keyless entry.",
+    "createdAt": "2025-07-08T21:20:00.000Z"
+  },
+  {
+    "id": "r7",
+    "gymId": "crunch-fitness",
+    "author": "Omar",
+    "rating": 4,
+    "comment": "Fun atmosphere, classes fill up fast though.",
+    "createdAt": "2025-07-12T17:10:00.000Z"
+  },
+  {
+    "id": "r8",
+    "gymId": "la-fitness",
+    "author": "Ava",
+    "rating": 4,
+    "comment": "The pool and basketball court are a nice bonus.",
+    "createdAt": "2025-06-30T14:00:00.000Z"
+  },
+  {
+    "id": "r9",
+    "gymId": "orangetheory",
+    "author": "Yusuf",
+    "rating": 5,
+    "comment": "Coached HIIT classes push you way harder than solo workouts.",
+    "createdAt": "2025-07-05T06:30:00.000Z"
+  },
+  {
+    "id": "r10",
+    "gymId": "ymca",
+    "author": "Mariam",
+    "rating": 4,
+    "comment": "Great for families, the pool schedule works for us.",
+    "createdAt": "2025-07-14T16:00:00.000Z"
+  }
+]

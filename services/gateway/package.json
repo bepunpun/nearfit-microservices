@@ -1,0 +1,16 @@
+{
+  "name": "nearfit-gateway",
+  "version": "1.0.0",
+  "description": "NearFit API gateway: the single public entry point, routing to the gym and review services and composing their answers",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  }
+}

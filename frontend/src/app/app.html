@@ -1,0 +1,28 @@
+<div class="app-shell">
+  <app-sidebar
+    [gyms]="gyms()"
+    [selectedGymId]="selectedGymId()"
+    [loading]="loading()"
+    [error]="error()"
+    [openNowOnly]="openNowOnly()"
+    [radiusKm]="radiusKm()"
+    [notices]="notices()"
+    (gymSelected)="onGymSelected($event)"
+    (openNowOnlyChange)="onOpenNowChange($event)"
+    (radiusKmChange)="onRadiusChange($event)"
+    (retry)="loadGyms()"
+  ></app-sidebar>
+
+  <main class="map-area">
+    <app-map
+      [gyms]="gyms()"
+      [selectedGymId]="selectedGymId()"
+      [userCoords]="userCoords()"
+      (gymSelected)="onGymSelected($event)"
+    ></app-map>
+
+    @if (selectedGym(); as gym) {
+      <app-gym-detail [gym]="gym" (closed)="onDetailClosed()" (reviewAdded)="onReviewAdded($event)"></app-gym-detail>
+    }
+  </main>
+</div>

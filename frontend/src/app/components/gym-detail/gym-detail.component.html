@@ -1,0 +1,127 @@
+<article class="detail" [attr.aria-label]="gym().name + ' details'">
+  <header class="detail-head">
+    <span class="badge" [style.background]="gym().color">{{ gym().name.charAt(0).toUpperCase() }}</span>
+    <div class="title">
+      <h2>{{ gym().name }}</h2>
+      <p class="sub">
+        <span [class.open]="gym().openNow === true" [class.closed]="gym().openNow === false">{{ status() }}</span>
+        &middot; {{ gym().distanceKm }} km away
+        @if (price()) {
+          &middot; {{ price() }}
+        }
+      </p>
+    </div>
+    <button type="button" class="close" (click)="closed.emit()" aria-label="Close details">&times;</button>
+  </header>
+
+  <div class="scroll">
+    <p class="rating">
+      <span class="stars" aria-hidden="true">{{ ratingStars() }}</span>
+      @if (gym().averageRating !== null) {
+        <strong>{{ gym().averageRating }}</strong>
+      }
+      <span class="muted">{{ reviewCountText() }}</span>
+    </p>
+
+    <dl class="facts">
+      <dt>Address</dt>
+      <dd>{{ gym().address }}</dd>
+      @if (gym().hours.raw) {
+        <dt>Hours</dt>
+        <dd>{{ gym().hours.raw }}</dd>
+      }
+      @if (tel()) {
+        <dt>Phone</dt>
+        <dd>
+          <a [href]="tel()">{{ gym().phone }}</a>
+        </dd>
+      }
+      @if (website()) {
+        <dt>Website</dt>
+        <dd>
+          <a [href]="website()" target="_blank" rel="noopener noreferrer">{{ website() }}</a>
+        </dd>
+      }
+    </dl>
+
+    @if (gym().amenities.length) {
+      <ul class="chips">
+        @for (amenity of gym().amenities; track amenity) {
+          <li>{{ amenity }}</li>
+        }
+      </ul>
+    }
+
+    <a class="directions" [href]="directions()" target="_blank" rel="noopener noreferrer">Get directions</a>
+
+    <section class="reviews">
+      <h3>Reviews</h3>
+
+      @if (loadingReviews() && reviews().length === 0) {
+        <p class="muted">Loading reviews...</p>
+      } @else if (reviewsError()) {
+        <p class="error">
+          Couldn't load reviews.
+          <button type="button" class="link" (click)="loadReviews(gym().id)">Try again</button>
+        </p>
+      } @else if (reviews().length === 0) {
+        <p class="muted">Nobody has reviewed this gym yet. Be the first!</p>
+      }
+
+      <ul class="review-list">
+        @for (review of reviews(); track review.id) {
+          <li class="review">
+            <div class="review-top">
+              <strong>{{ review.author }}</strong>
+              <span class="stars small" [attr.aria-label]="review.rating + ' out of 5'">{{ stars(review.rating) }}</span>
+              <span class="muted date">{{ formatDate(review.createdAt) }}</span>
+            </div>
+            <p>{{ review.comment }}</p>
+          </li>
+        }
+      </ul>
+
+      <form class="review-form" (submit)="$event.preventDefault(); submit()">
+        <h4>Write a review</h4>
+
+        <label class="field">
+          <span>Your name</span>
+          <input type="text" [maxLength]="maxAuthor" [value]="author()" (input)="onAuthorInput($event)" />
+        </label>
+
+        <div class="field">
+          <span id="rating-label">Rating</span>
+          <div class="rating-picker" role="radiogroup" aria-labelledby="rating-label">
+            @for (n of ratingOptions; track n) {
+              <button
+                type="button"
+                role="radio"
+                class="star-btn"
+                [class.on]="n <= rating()"
+                [attr.aria-checked]="n === rating()"
+                [attr.aria-label]="n + (n === 1 ? ' star' : ' stars')"
+                (click)="rating.set(n)"
+              >
+                ★
+              </button>
+            }
+          </div>
+        </div>
+
+        <label class="field">
+          <span>Comment</span>
+          <textarea rows="3" [maxLength]="maxComment" [value]="comment()" (input)="onCommentInput($event)"></textarea>
+          <small class="muted counter">{{ comment().length }}/{{ maxComment }}</small>
+        </label>
+
+        @if (submitError()) {
+          <p class="error">{{ submitError() }}</p>
+        }
+
+        <button type="submit" class="submit" [disabled]="!canSubmit()">
+          {{ submitting() ? 'Posting...' : 'Post review' }}
+        </button>
+      </form>
+    </section>
+  </div>
+</article>

@@ -1,0 +1,83 @@
+<aside class="sidebar">
+  <header class="brand">
+    <span class="brand-mark">N</span>
+    <span class="brand-name">NearFit</span>
+  </header>
+
+  <div class="search-box">
+    <span class="search-icon" aria-hidden="true">⌕</span>
+    <input
+      type="search"
+      placeholder="Search gyms..."
+      aria-label="Search gyms"
+      [value]="searchTerm()"
+      (input)="onSearchInput($event)"
+    />
+  </div>
+
+  <div class="filter-row">
+    <div class="filter-group">
+      <span class="filter-label">Show me</span>
+      <button type="button" class="pill" [class.active]="openNowOnly()" (click)="onToggleOpenNow()">
+        {{ openNowOnly() ? 'Open Now' : 'All gyms' }}
+      </button>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Sort by</span>
+      <button type="button" class="pill" (click)="onToggleSort()">
+        {{ sortMode() === 'nearest' ? 'Nearest' : 'Top rated' }}
+      </button>
+    </div>
+    <div class="filter-group">
+      <label class="filter-label" for="radius">Within</label>
+      <select id="radius" class="pill" [value]="radiusKm()" (change)="onRadiusChange($event)">
+        @for (km of radiusOptions; track km) {
+          <option [value]="km" [selected]="km === radiusKm()">{{ km }} km</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  @for (notice of notices(); track notice) {
+    <p class="notice">{{ notice }}</p>
+  }
+
+  @if (loading()) {
+    <p class="status-text" role="status">Finding gyms nearby...</p>
+  } @else if (error()) {
+    <p class="status-text error" role="alert">
+      Couldn't load gyms. Is the server running?
+      <button type="button" class="retry" (click)="retry.emit()">Try again</button>
+    </p>
+  } @else if (filteredGyms().length === 0) {
+    <p class="status-text">{{ emptyMessage() }}</p>
+  }
+
+  <ul class="gym-list">
+    @for (gym of filteredGyms(); track gym.id) {
+      <li>
+        <button
+          type="button"
+          class="gym-row"
+          [class.selected]="gym.id === selectedGymId()"
+          [attr.aria-pressed]="gym.id === selectedGymId()"
+          (click)="gymSelected.emit(gym)"
+        >
+          <span class="badge" [style.background]="gym.color">{{ initial(gym.name) }}</span>
+          <span class="gym-info">
+            <span class="gym-name">{{ gym.name }}</span>
+            <span class="gym-meta">{{ gym.distanceKm }} km &middot; {{ statusLabel(gym) }}</span>
+          </span>
+          <span class="review-chip" [title]="reviewCountLabel(gym.reviewCount)">
+            @if (gym.averageRating !== null) {
+              <span class="chip-star">★</span> {{ gym.averageRating }}
+              <span class="chip-count">({{ gym.reviewCount }})</span>
+            } @else {
+              <span class="chip-count">No reviews</span>
+            }
+          </span>
+        </button>
+      </li>
+    }
+  </ul>
+</aside>

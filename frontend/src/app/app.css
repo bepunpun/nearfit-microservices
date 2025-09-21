@@ -1,0 +1,27 @@
+.app-shell {
+  display: flex;
+  gap: 16px;
+  height: 100vh;
+  padding: 16px;
+}
+
+.map-area {
+  flex: 1;
+  min-width: 0;
+  background: var(--map-bg);
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 800px) {
+  .app-shell {
+    flex-direction: column;
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .map-area {
+    min-height: 0;
+  }
+}

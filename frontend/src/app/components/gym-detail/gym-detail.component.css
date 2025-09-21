@@ -1,0 +1,308 @@
+:host {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  bottom: 16px;
+  width: min(380px, calc(100% - 32px));
+  z-index: 1100; /* above Leaflet's panes and controls */
+  display: flex;
+}
+
+.detail {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--card-bg);
+  color: var(--card-fg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.detail-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 16px 12px;
+}
+
+.badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.title {
+  flex: 1;
+  min-width: 0;
+}
+
+h2 {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.sub {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: var(--card-muted);
+}
+
+.open {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.closed {
+  color: #ff8a80;
+  font-weight: 600;
+}
+
+.close {
+  border: none;
+  background: transparent;
+  color: var(--card-muted);
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  align-self: flex-start;
+  padding: 0 4px;
+}
+
+.close:hover,
+.close:focus-visible {
+  color: var(--card-fg);
+}
+
+.scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 16px 16px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0 14px;
+  font-size: 13px;
+}
+
+.stars {
+  color: #f9c74f;
+  letter-spacing: 1px;
+}
+
+.stars.small {
+  font-size: 12px;
+}
+
+.muted {
+  color: var(--card-muted);
+  font-size: 12px;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 6px 10px;
+  margin: 0 0 14px;
+  font-size: 13px;
+}
+
+.facts dt {
+  color: var(--card-muted);
+}
+
+.facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+a {
+  color: var(--accent);
+}
+
+.chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 14px;
+  padding: 0;
+}
+
+.chips li {
+  background: #33333a;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 11px;
+}
+
+.directions {
+  display: block;
+  text-align: center;
+  background: var(--accent);
+  color: #05201c;
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  margin-bottom: 20px;
+}
+
+.reviews h3 {
+  margin: 0 0 10px;
+  font-size: 14px;
+}
+
+.review-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.review {
+  background: #2b2b31;
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  font-size: 13px;
+}
+
+.review p {
+  margin: 6px 0 0;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+
+.review-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.date {
+  margin-left: auto;
+}
+
+.review-form {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid #38383f;
+}
+
+.review-form h4 {
+  margin: 0 0 10px;
+  font-size: 13px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: var(--card-muted);
+}
+
+input,
+textarea {
+  background: #2b2b31;
+  border: 1px solid #3c3c44;
+  color: var(--card-fg);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  font: inherit;
+  font-size: 13px;
+  resize: vertical;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.counter {
+  align-self: flex-end;
+}
+
+.rating-picker {
+  display: flex;
+  gap: 2px;
+}
+
+.star-btn {
+  border: none;
+  background: transparent;
+  color: #55555d;
+  font-size: 24px;
+  line-height: 1;
+  padding: 0 2px;
+  cursor: pointer;
+}
+
+.star-btn.on {
+  color: #f9c74f;
+}
+
+.submit {
+  width: 100%;
+  border: none;
+  background: var(--accent);
+  color: #05201c;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #ff8a80;
+  font-size: 12px;
+  margin: 0 0 10px;
+}
+
+.link {
+  border: none;
+  background: none;
+  color: var(--accent);
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+}
+
+@media (max-width: 800px) {
+  :host {
+    top: auto;
+    left: 16px;
+    right: 16px;
+    width: auto;
+    height: 60%;
+  }
+}

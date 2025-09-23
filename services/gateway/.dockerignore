@@ -1,0 +1,5 @@
+node_modules
+test
+*.log
+src/data/reviews.json
+src/data/*.tmp

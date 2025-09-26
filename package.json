@@ -2,5 +2,23 @@
   "name": "nearfit-microservices",
   "version": "1.0.0",
   "private": true,
-  "description": "Find the nearest gym to you: the same app as nearfit-monolithic, split into a gateway, a gym service and a review service"
+  "description": "Find the nearest gym to you: the same app as nearfit-monolithic, split into a gateway, a gym service and a review service",
+  "scripts": {
+    "install:all": "npm --prefix services/gateway install && npm --prefix services/gym-service install && npm --prefix services/review-service install && npm --prefix frontend install",
+    "ci:all": "npm --prefix services/gateway ci && npm --prefix services/gym-service ci && npm --prefix services/review-service ci && npm --prefix frontend ci",
+    "dev:services": "bash scripts/dev-services.sh",
+    "dev:gateway": "npm --prefix services/gateway run dev",
+    "dev:gym": "npm --prefix services/gym-service run dev",
+    "dev:review": "npm --prefix services/review-service run dev",
+    "dev:frontend": "npm --prefix frontend start",
+    "test": "npm run test:services && npm --prefix frontend test -- --watch=false",
+    "test:services": "npm --prefix services/gym-service test && npm --prefix services/review-service test && npm --prefix services/gateway test",
+    "up": "docker compose up --build",
+    "up:detached": "docker compose up -d --build",
+    "down": "docker compose down",
+    "logs": "docker compose logs -f",
+    "deploy:install": "bash deploy/install-server-deps.sh",
+    "deploy:setup": "bash deploy/setup-server.sh",
+    "deploy": "bash deploy/deploy.sh"
+  }
 }

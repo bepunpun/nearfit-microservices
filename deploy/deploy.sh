@@ -10,7 +10,7 @@ cd "$ROOT"
 
 if [ "${SKIP_TESTS:-0}" != "1" ]; then
   echo "==> Running tests"
-  run npm run install:all
+  run npm run ci:all
   run npm test
 fi
 

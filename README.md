@@ -260,25 +260,23 @@ rsync and curl yourself.
 ## Monolith vs microservices
 
 The frontend, the `/api` contract and the gym and review logic are the same in
-both repositories. Only the architecture differs. These figures are line counts
-and file counts measured on both repositories, not benchmarks.
+both repositories. Only the architecture differs, so the comparison is about what
+it is like to maintain and update each one.
 
 | | Monolith | Microservices |
 |---|---|---|
-| What runs | 1 Node process, serving the API and the app | 3 Node services and an nginx frontend, 4 containers |
-| Ports | 4100 | 8080 published; 4100 to 4102 internal |
-| Backend source (no tests) | 573 lines | 802 lines (gateway 229, gym 426, review 147) |
-| Backend tests | 31 | 47 |
-| Parts talk via | function calls | HTTP between the gateway and the services |
-| Deploy tooling | 8 files, 235 lines (systemd + nginx) | 7 files, 197 lines, plus 6 container files (Dockerfiles, compose, nginx.conf), 128 lines |
-| If the review side breaks | it shares a process with search, so it can take search down with it | search still works, without ratings (tested) |
-| Scaling | the whole app as one unit | each service separately in principle, though the review service's JSON file would need a real database first |
-| Where reviews live | a JSON file next to the app | a JSON file in a Docker volume |
+| Making a change | The code is in one place, so a change that touches search and reviews is a single edit and a single test run | Each feature has an owner: a change goes into the service that holds it, and that service's own tests cover it |
+| Releasing an update | One build, one deploy, one restart | Rebuild and restart only the service that changed, for example `docker compose up -d --build gym-service` |
+| Finding your way around | One codebase and one process to read, run and debug | Each service has one job, its own tests and its own Dockerfile, so you can work on one without loading the others in your head |
+| When a part misbehaves | One process and one log stream to look at | The other services keep working: with the review service stopped, search still returns gyms (covered by tests) |
+| Changing a technology | The change applies to the whole backend | Swap one service's storage or stack, for example move reviews to a database, without touching the other services or the frontend |
+| Testing | Tests exercise the whole app in one process | Each service is tested on its own, and the gateway is tested against fake services, so failures are easy to reproduce |
+| Running it locally | Build the frontend, then `npm start` | `docker compose up --build` |
 
-The microservices version costs more code and more moving parts to do the same
-job, and buys fault isolation and independent deployability that a project this
-size doesn't really need. That trade-off is what this pair of repositories is
-meant to show.
+The monolith keeps a small app simple: one thing to build, deploy and understand.
+The microservices version makes each part easier to change, test and release
+without disturbing the rest. Having both side by side makes those differences
+concrete.
 
 ## Project layout
 

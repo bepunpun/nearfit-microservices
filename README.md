@@ -107,6 +107,46 @@ tells you whether the place is open right now.
 | Tests | `node:test` and Vitest | Every service and the frontend covered |
 | Hosting | Docker Compose + nginx over SSH | One command brings up all four containers |
 
+## Architecture
+
+Four containers on a private Docker network. Only the frontend is published to
+the host; everything else is reachable only from inside the network, where
+containers find each other by service name.
+
+```mermaid
+flowchart LR
+    user(["Browser"])
+    osm[("Overpass API<br/>OpenStreetMap")]
+
+    subgraph compose["Docker Compose network (private)"]
+        direction LR
+        fe["<b>frontend</b><br/>nginx :80<br/>serves the Angular app"]
+        gw["<b>gateway</b><br/>Express :4100<br/>the only public API"]
+        gym["<b>gym-service</b><br/>Express :4101<br/>gym search"]
+        rev["<b>review-service</b><br/>Express :4102<br/>reviews and ratings"]
+        vol[("reviews-data<br/>Docker volume at /data")]
+    end
+
+    user -->|"http://localhost:8080"| fe
+    fe -->|"/api/*"| gw
+    gw -->|"/gyms/*"| gym
+    gw -->|"/reviews/*<br/>ratings"| rev
+    gym -->|"HTTPS"| osm
+    rev --- vol
+```
+
+| Container | Talks to | Port | Published to the host | Data |
+|---|---|---|---|---|
+| `frontend` | `gateway` | 80 | yes, `WEB_PORT` (8080) | none |
+| `gateway` | `gym-service`, `review-service` | 4100 | no | none |
+| `gym-service` | Overpass API (internet) | 4101 | no | none (results cached in memory) |
+| `review-service` | its volume | 4102 | no | `reviews-data` volume |
+
+Compose starts them in dependency order: `gym-service` and `review-service`
+first, then `gateway` once both report healthy, then `frontend` once the gateway
+is healthy. nginx reaches the gateway through Docker's DNS, so recreating a
+container never leaves it pointing at a stale address.
+
 ## Install it
 
 Requires Docker with Compose v2.
@@ -148,14 +188,7 @@ missing upstreams are all covered without starting anything real.
 
 ### How it works
 
-```
-browser --> frontend (nginx)   serves the Angular app, proxies /api/* to the gateway
-                |
-                v
-            gateway :4100  --> gym-service    :4101  --> Overpass API (OpenStreetMap)
-                |
-                +------------> review-service :4102  --> reviews.json (Docker volume)
-```
+The graph in [Architecture](#architecture) shows how the containers connect.
 
 - **A search** goes browser, nginx, gateway. The gateway asks the gym service for
   the gyms and the review service for all rating summaries **in parallel**, then
